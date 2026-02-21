@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/mkhan2024/event-registration-api-apurba/issues"
   },
-  "homepage": "https://github.com/mkhan2024/event-registration-api-apurba#readme"
+  "homepage": "https://github.com/mkhan2024/event-registration-api-apurba#readme",
+  "dependencies": {
+    "joi": "^18.0.2"
+  },
+  "devDependencies": {
+    "@types/joi": "^17.2.2"
+  }
 }
