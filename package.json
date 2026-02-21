@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mkhan2024/event-registration-api-apurba#readme",
   "dependencies": {
+    "firebase-admin": "^13.6.1",
     "joi": "^18.0.2"
   },
   "devDependencies": {
