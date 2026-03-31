@@ -6,7 +6,7 @@ export const createEventSchema = {
     date: Joi.date().iso().greater('now').required(),
     capacity: Joi.number().integer().min(5).required(),
     registrationCount: Joi.number().integer().min(0).max(Joi.ref('capacity')).default(0),
-    status: Joi.string().valid('active', 'cancelled', 'completed').default('active'),
+    status: Joi.string().valid('active', 'cancelled', 'completed', 'postponed').default('active'),
     category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general').default('general'),
   }),
 };
@@ -20,7 +20,7 @@ export const updateEventSchema = {
     date: Joi.date().iso().greater('now'),
     capacity: Joi.number().integer().min(5),
     registrationCount: Joi.number().integer().min(0).when('capacity', { is: Joi.exist(), then: Joi.number().max(Joi.ref('capacity')) }),
-    status: Joi.string().valid('active', 'cancelled', 'completed'),
+    status: Joi.string().valid('active', 'cancelled', 'completed', 'postponed'),
     category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general'),
   }),
 };
