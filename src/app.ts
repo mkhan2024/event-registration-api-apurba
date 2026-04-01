@@ -2,13 +2,14 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import dotenv from 'dotenv';
 
-// Load environment variables BEFORE any other imports!
 dotenv.config();
 
 import eventRoutes from './api/v1/routes/eventRoutes';
+import { getHelmetConfig } from '../config/helmetConfig';
 
 const app = express();
 
+app.use(getHelmetConfig());
 app.use(express.json());
 
 app.get('/api/v1/health', (req: Request, res: Response) => {
