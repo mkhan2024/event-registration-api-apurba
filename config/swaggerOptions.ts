@@ -29,7 +29,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
             },
         ],
     },
-    apis: ["./src/api/v1/routes/*.ts", "./src/api/v1/validation/*.ts"],
+    apis: ["./src/api/v1/**/*.ts"],
 };
 
 export const generateSwaggerSpec = (): object => {
