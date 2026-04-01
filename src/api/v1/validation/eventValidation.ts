@@ -1,5 +1,6 @@
 import * as Joi from 'joi';
 
+// Validation schemas for events
 export const createEventSchema = {
   body: Joi.object({
     name: Joi.string().min(3).required(),
@@ -19,7 +20,10 @@ export const updateEventSchema = {
     name: Joi.string().min(3),
     date: Joi.date().iso().greater('now'),
     capacity: Joi.number().integer().min(5),
-    registrationCount: Joi.number().integer().min(0).when('capacity', { is: Joi.exist(), then: Joi.number().max(Joi.ref('capacity')) }),
+    registrationCount: Joi.number().integer().min(0).when('capacity', { 
+      is: Joi.exist(), 
+      then: Joi.number().max(Joi.ref('capacity')) 
+    }),
     status: Joi.string().valid('active', 'cancelled', 'completed', 'postponed'),
     category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general'),
   }),
