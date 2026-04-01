@@ -2,11 +2,14 @@
 name: Deploy Documentation
 
 on:
-  workflow_dispatch:  # Only run when manually triggered
+  workflow_dispatch:     # Run manually from GitHub
+  push:                  # Also run when I push to this branch (for testing)
+    branches: [feature/module5-documentation-security]
 
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
