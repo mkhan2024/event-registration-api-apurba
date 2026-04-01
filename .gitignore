@@ -1,5 +1,10 @@
+# Dependencies
 node_modules/
 dist/
+
+# Secrets & credentials
 serviceAccountKey.json
 *.env
+
+# Environment variables - keep secrets safe
 .env

@@ -1,12 +1,35 @@
 import * as Joi from 'joi';
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     Event:
+ *       type: object
+ *       required:
+ *         - id
+ *         - name
+ *         - date
+ *         - capacity
+ *       properties:
+ *         id:
+ *           type: string
+ *         name:
+ *           type: string
+ *         date:
+ *           type: string
+ *           format: date-time
+ *         capacity:
+ *           type: integer
+ */
+
 export const createEventSchema = {
   body: Joi.object({
     name: Joi.string().min(3).required(),
     date: Joi.date().iso().greater('now').required(),
     capacity: Joi.number().integer().min(5).required(),
     registrationCount: Joi.number().integer().min(0).max(Joi.ref('capacity')).default(0),
-    status: Joi.string().valid('active', 'cancelled', 'completed').default('active'),
+    status: Joi.string().valid('active', 'cancelled', 'completed', 'postponed').default('active'),
     category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general').default('general'),
   }),
 };
@@ -20,7 +43,7 @@ export const updateEventSchema = {
     date: Joi.date().iso().greater('now'),
     capacity: Joi.number().integer().min(5),
     registrationCount: Joi.number().integer().min(0).when('capacity', { is: Joi.exist(), then: Joi.number().max(Joi.ref('capacity')) }),
-    status: Joi.string().valid('active', 'cancelled', 'completed'),
+    status: Joi.string().valid('active', 'cancelled', 'completed', 'postponed'),
     category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general'),
   }),
 };
