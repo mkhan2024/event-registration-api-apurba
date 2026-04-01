@@ -1,3 +1,4 @@
+# Temporary comment to force GitHub to detect the workflow
 name: Deploy Documentation
 
 on:
