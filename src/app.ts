@@ -7,11 +7,14 @@ dotenv.config();
 import eventRoutes from './api/v1/routes/eventRoutes';
 import { getHelmetConfig } from '../config/helmetConfig';
 import { getCorsConfig } from '../config/corsConfig';
+import setupSwagger from '../config/swagger';
 
 const app = express();
 
 app.use(getHelmetConfig());
 app.use(getCorsConfig());
+setupSwagger(app);
+
 app.use(express.json());
 
 app.get('/api/v1/health', (req: Request, res: Response) => {
