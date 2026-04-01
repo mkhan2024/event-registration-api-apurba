@@ -35,7 +35,19 @@ router.get('/', controller.getAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateEvent'
+ *             type: object
+ *             required:
+ *               - name
+ *               - date
+ *               - capacity
+ *             properties:
+ *               name:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date-time
+ *               capacity:
+ *                 type: integer
  *     responses:
  *       '201':
  *         description: Event created successfully
@@ -85,7 +97,15 @@ router.get('/:id', validateRequest(getEventSchema), controller.getById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateEvent'
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date-time
+ *               capacity:
+ *                 type: integer
  *     responses:
  *       '200':
  *         description: Event updated successfully

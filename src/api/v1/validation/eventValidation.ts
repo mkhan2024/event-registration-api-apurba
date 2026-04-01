@@ -1,6 +1,28 @@
 import * as Joi from 'joi';
 
-// Validation schemas for events
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     Event:
+ *       type: object
+ *       required:
+ *         - id
+ *         - name
+ *         - date
+ *         - capacity
+ *       properties:
+ *         id:
+ *           type: string
+ *         name:
+ *           type: string
+ *         date:
+ *           type: string
+ *           format: date-time
+ *         capacity:
+ *           type: integer
+ */
+
 export const createEventSchema = {
   body: Joi.object({
     name: Joi.string().min(3).required(),
@@ -20,10 +42,7 @@ export const updateEventSchema = {
     name: Joi.string().min(3),
     date: Joi.date().iso().greater('now'),
     capacity: Joi.number().integer().min(5),
-    registrationCount: Joi.number().integer().min(0).when('capacity', { 
-      is: Joi.exist(), 
-      then: Joi.number().max(Joi.ref('capacity')) 
-    }),
+    registrationCount: Joi.number().integer().min(0).when('capacity', { is: Joi.exist(), then: Joi.number().max(Joi.ref('capacity')) }),
     status: Joi.string().valid('active', 'cancelled', 'completed', 'postponed'),
     category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general'),
   }),
